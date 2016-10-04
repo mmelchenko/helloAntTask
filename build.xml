@@ -1,0 +1,22 @@
+<project name="helloAntTask" default="firstTarget" basedir=".">
+
+    <property name="dir" value="a"/>
+    <property name="file" value="newFile.txt"/>
+
+    <target name="cleanDir" description="delete old directory">
+        <delete dir="${dir}" failonerror="false"/>
+    </target>
+
+    <target name="createDir" description="create new directory" depends="cleanDir">
+        <touch file="${file}"/>
+    </target>
+
+    <target name="copyFile" description="copy file from root of the project to 'a' directory" depends="createDir">
+        <copy file="${file}" todir="${basedir}/a"/>
+    </target>
+
+    <target name="firstTarget" depends="copyFile">
+        <echo>My First Ant Project!</echo>
+    </target>
+
+</project>
